@@ -32,7 +32,7 @@ class SignInMethods {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        print(e);
         //TODO: if email already exists show popup dialog
       }
     } catch (e) {

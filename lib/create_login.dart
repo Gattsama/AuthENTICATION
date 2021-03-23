@@ -1,4 +1,6 @@
 import 'package:codespiration_signin/auth.dart';
+import 'package:codespiration_signin/menu_frame.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -166,10 +168,50 @@ class _CreateLogin extends State<CreateLogin> {
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState.validate()) {
-                        SignInMethods()
-                            .registerWithEmailAndPasswd(email, password);
-                        print(
-                            'it\'s all good.\n $email  $password  $passwordConfrim');
+                        FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password)
+                            .catchError((error) {
+                          print(error.code);
+                          if (error.code == 'email-already-in-use') {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                        'Account already exists with provided Email'),
+                                  );
+                                });
+                          }
+                        });
+                        if (!FirebaseAuth.instance.currentUser.emailVerified) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text(
+                                      'Please Check Email For Verification'),
+                                );
+                              });
+                        } else {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return Container(
+                              child: TextButton(
+                                onPressed: () {
+                                  SignInMethods().signOut();
+                                  SignInMethods().signOutGoogle();
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return MenuFrame();
+                                  }));
+                                },
+                                child: Text('New User Created\nSign Out'),
+                              ),
+                              color: Colors.purple,
+                            );
+                          }));
+                        }
                       }
                     },
                     child: Container(

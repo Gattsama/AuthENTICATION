@@ -62,6 +62,8 @@ class MenuFrame extends StatelessWidget {
                     controller: _pageController,
                     children: [
                       HomeSignInWidget(
+                        //page 0
+                        //these are both callbacks
                         goToSignIn: () {
                           _pageController.animateToPage(1,
                               duration: Duration(milliseconds: 500),
@@ -73,8 +75,16 @@ class MenuFrame extends StatelessWidget {
                               curve: Curves.easeIn);
                         },
                       ),
-                      SignIn(),
+                      SignIn(
+                        //page 1
+                        goToSignUpCallBack: () {
+                          _pageController.animateToPage(2,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn);
+                        },
+                      ),
                       CreateLogin(cancelBackToHome: () {
+                        //page 2
                         _pageController.animateToPage(0,
                             duration: Duration(milliseconds: 200),
                             curve: Curves.easeIn);

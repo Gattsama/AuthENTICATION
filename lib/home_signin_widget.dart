@@ -19,7 +19,9 @@ class HomeSignInWidget extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(30.0)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
