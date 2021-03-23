@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.conjuringmidas.codespiration_signin">
    <application
-        android:label="codespiration_signin"
+        android:label="Auth\nENTICATE"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
