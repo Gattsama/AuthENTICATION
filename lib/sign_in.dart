@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:codespiration_signin/auth.dart';
 import 'package:codespiration_signin/menu_frame.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -110,16 +112,19 @@ class _SignInState extends State<SignIn> {
 
                     if (FirebaseAuth.instance.currentUser != null &&
                         !FirebaseAuth.instance.currentUser.emailVerified) {
-                      showDialog(
+                      return showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              title: Text(
-                                'ERROR',
-                                textAlign: TextAlign.center,
+                            return BackdropFilter(
+                              filter: ImageFilter.blur(sigmaY: 2, sigmaX: 2),
+                              child: AlertDialog(
+                                title: Text(
+                                  'ERROR',
+                                  textAlign: TextAlign.center,
+                                ),
+                                content: Text('Please verify sent email',
+                                    textAlign: TextAlign.center),
                               ),
-                              content: Text('Please verify sent email',
-                                  textAlign: TextAlign.center),
                             );
                           });
                     }
@@ -127,13 +132,22 @@ class _SignInState extends State<SignIn> {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              title: Text(
-                                'ERROR',
-                                textAlign: TextAlign.center,
+                            return BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                              child: AlertDialog(
+                                actions: [
+                                  TextButton.icon(
+                                      onPressed: () => Navigator.pop(context),
+                                      icon: Icon(Icons.error),
+                                      label: Text('Click Here'))
+                                ],
+                                title: Text(
+                                  'ERROR',
+                                  textAlign: TextAlign.center,
+                                ),
+                                content: Text('Incorrect UserName or Password',
+                                    textAlign: TextAlign.center),
                               ),
-                              content: Text('Incorrect UserName or Password',
-                                  textAlign: TextAlign.center),
                             );
                           });
                     } else if (FirebaseAuth.instance.currentUser != null &&
