@@ -148,9 +148,23 @@ class _CreateLogin extends State<CreateLogin> {
                           _termsAgreed = newValue;
                         });
                       }),
-                  Text(
-                    'Agree to Terms & Conditions',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(
+                                'These are crazy terms & conditions\nGo Back to previous screen'));
+                      }));
+                    },
+                    child: Text(
+                      'Agree to Terms & Conditions',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          decoration: TextDecoration.underline),
+                    ),
                   ),
                 ],
               ),
@@ -206,7 +220,9 @@ class _CreateLogin extends State<CreateLogin> {
                                     return MenuFrame();
                                   }));
                                 },
-                                child: Text('New User Created\nSign Out'),
+                                child: Text(
+                                  'New User Created\nSign Out & Start Over',
+                                ),
                               ),
                               color: Colors.purple,
                             );

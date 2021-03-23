@@ -58,6 +58,7 @@ class HomeSignInWidget extends StatelessWidget {
               Text(
                 ' | Sign in with Facebook',
                 style: TextStyle(
+                  decoration: TextDecoration.lineThrough,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.red,
@@ -82,6 +83,7 @@ class HomeSignInWidget extends StatelessWidget {
               Text(
                 ' | Sign in with Twitter',
                 style: TextStyle(
+                  decoration: TextDecoration.lineThrough,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.red,

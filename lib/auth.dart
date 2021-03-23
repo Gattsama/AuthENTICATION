@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -33,7 +34,17 @@ class SignInMethods {
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         print(e);
-        //TODO: if email already exists show popup dialog
+        //TODO: [OPTIONAL]if email already exists show popup dialog
+        // if (e.code == 'email-already-in-use') {
+        //   showDialog(
+        //       context: context,
+        //       builder: (context) {
+        //         return AlertDialog(
+        //           title: Text(
+        //               'Account already exists with provided Email'),
+        //         );
+        //       });
+        // }
       }
     } catch (e) {
       print(e.toString());
@@ -41,7 +52,7 @@ class SignInMethods {
     }
   }
 
-  // TODO: To confirm validate email address
+  // TODO: [OPTIONAL] To confirm validate email address
   // // using regular expression
   // if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
   // return "Please enter a valid email address";
